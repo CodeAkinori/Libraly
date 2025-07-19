@@ -26,12 +26,29 @@ window.onload = () => {
       return;
     }
 
-    result.textContent = resp.data
-      .map((book, i) => {
-        const authors = book.author_name ? book.author_name.join(", ") : "Autor desconhecido";
-        const year = book.first_publish_year || "?";
-        return `${i + 1}. ${book.title} - ${authors} (${year})`;
-      })
-      .join("\n");
+    // Limpa resultado anterior
+    result.textContent = "";
+
+    resp.data.forEach((book, i) => {
+      const authors = book.author_name ? book.author_name.join(", ") : "Autor desconhecido";
+      const year = book.first_publish_year || "?";
+
+      const bookUrl = `https://openlibrary.org${book.key}`;
+      const div = document.createElement('div');
+      div.className = "book";
+
+      div.innerHTML = `
+        <div class="book-title">${book.title}</div>
+        <div class="book-authors">${authors}</div>
+        <div class="book-year">${year}</div>
+        <button class="download-btn">Abrir página / Baixar</button>
+      `;
+
+      div.querySelector('.download-btn').onclick = () => {
+        ipcRenderer.invoke('open-link', bookUrl);
+      };
+
+      result.appendChild(div);
+    });
   };
 };
