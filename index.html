@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>OpenLibrary Search</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input { width: 70%; padding: 8px; font-size: 16px; }
+    button { padding: 8px 12px; font-size: 16px; margin-left: 8px; }
+    pre { white-space: pre-wrap; margin-top: 20px; background: #f0f0f0; padding: 10px; border-radius: 4px; height: 200px; overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <h2>Buscar Livro no OpenLibrary</h2>
+  <input id="searchInput" type="text" placeholder="Digite o nome do livro" />
+  <button id="searchButton">Buscar</button>
+  <pre id="result"></pre>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
